@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments</title>
+  <meta name="description" content="Localizing UAVs in GNSS-denied urban environments using aerial imagery, building footprints, and geometric star descriptors. Research by Garth J.S. Terlizzi III and Kaveh Fathian, Colorado School of Mines.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments">
+  <meta property="og:description" content="Aerial imagery meets building geometry: UAV localization over metropolitan-scale reference maps. Watch the video and explore the method and results.">
+  <meta property="og:url" content="https://ariarobotics.github.io/aerial_urban_localization/">
+  <meta property="og:image" content="https://ariarobotics.github.io/aerial_urban_localization/assets/video-poster.jpg">
+  <meta property="og:image:alt" content="A drone above an urban neighborhood, illustrating localization using building footprints.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="citation_title" content="Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments">
+  <meta name="citation_author" content="Terlizzi III, Garth J.S.">
+  <meta name="citation_author" content="Fathian, Kaveh">
+  <link rel="canonical" href="https://ariarobotics.github.io/aerial_urban_localization/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#main" aria-label="ARIA Lab research project">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M3 26 16 4l13 22H3Zm0 0 13-8 13 8M16 4v14" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="3" fill="currentColor"/></svg>
+        ARIA LAB <span>Colorado School of Mines</span>
+      </a>
+      <nav aria-label="Page sections"><a href="#video">Video</a><a href="#method">Method</a><a href="#results">Results</a></nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero" aria-labelledby="paper-title">
+      <div class="eyebrow">Aerial robotics · Visual localization</div>
+      <h1 id="paper-title">Large-Scale Geometric Map-Based Localization of UAVs in GNSS-Denied Urban Environments</h1>
+      <p class="authors"><span>Garth J.S. Terlizzi III</span><span>Kaveh Fathian</span></p>
+      <p class="affiliation">Department of Computer Science · Colorado School of Mines</p>
+      <div class="actions">
+        <a class="button primary" href="#video"><span aria-hidden="true">▶</span> Watch video</a>
+        <a class="button" href="https://github.com/ariarobotics/aerial_urban_localization">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="button" href="#citation">Cite this work <span aria-hidden="true">↓</span></a>
+      </div>
+      <!-- Replace this status with an arXiv link once the submission has a public identifier. -->
+      <p class="publication-status">arXiv link forthcoming</p>
+    </section>
+
+    <section id="video" class="video-section" aria-labelledby="video-heading">
+      <div class="section-label"><h2 id="video-heading">Research video</h2><span>00:59 · Project overview</span></div>
+      <div class="video-frame">
+        <video controls playsinline preload="metadata" poster="assets/video-poster.jpg" aria-label="Research video demonstrating geometric map-based UAV localization" aria-describedby="video-description">
+          <source src="assets/iros_video_final_white_background.mp4" type="video/mp4">
+          Your browser does not support embedded video. <a href="assets/iros_video_final_white_background.mp4">Download the research video.</a>
+        </video>
+      </div>
+      <div class="video-note"><span id="video-description">From downward-facing imagery to localization in a building footprint map.</span><a href="assets/iros_video_final_white_background.mp4" download>Download video (9.7 MB)</a></div>
+    </section>
+
+    <section id="overview" class="section section-grid" aria-labelledby="overview-heading">
+      <div><div class="eyebrow">01 / Overview</div><h2 id="overview-heading">Finding position<br>through geometry.</h2></div>
+      <div class="summary">
+        <p>How can a UAV find its position when GNSS is unavailable? We match building patterns observed by a downward-facing camera to a reference building footprint map, using the spatial arrangement and shape of buildings to identify the location.</p>
+        <p>The system accumulates detections across video frames, builds a local map, and extracts geometric star descriptors from a Delaunay triangulation. Matching these descriptors against a large reference database produces candidate locations, which are ranked and refined across frames.</p>
+      </div>
+    </section>
+
+    <section id="method" class="section" aria-labelledby="method-heading">
+      <div class="eyebrow">02 / Method</div>
+      <h2 id="method-heading">From observations to a map match.</h2>
+      <div class="steps">
+        <div class="step"><span class="step-number">01</span><h3>Observe &amp; accumulate</h3><p>Segment buildings in aerial keyframes and stitch the detections into a unified local building map.</p></div>
+        <div class="step"><span class="step-number">02</span><h3>Describe the geometry</h3><p>Encode local Delaunay triangle structure together with building compactness, elongation, rectangularity, and convexity.</p></div>
+        <div class="step"><span class="step-number">03</span><h3>Match &amp; refine</h3><p>Retrieve reference descriptors, rank candidate locations through consensus voting and geometric scoring, then refine the position across frames.</p></div>
+      </div>
+      <figure>
+        <a href="assets/pipeline.png" aria-label="View localization pipeline figure at full resolution"><img class="figure-image" src="assets/pipeline.webp" width="2400" height="603" alt="Online pipeline: nadir imagery, building segmentation, map building, Delaunay triangulation, descriptor extraction, candidate generation and selection, multi-frame refinement, and localization. Offline building footprints are triangulated and encoded in a reference descriptor database." loading="lazy"></a>
+        <figcaption><strong>Localization pipeline.</strong> Reference descriptors are computed offline. During flight, building observations are accumulated and matched to the reference database. Select any figure to view it at full resolution.</figcaption>
+      </figure>
+    </section>
+
+    <section id="results" class="section" aria-labelledby="results-heading">
+      <div class="eyebrow">03 / Results</div>
+      <h2 id="results-heading">Localization at metropolitan scale.</h2>
+      <p>Evaluated on seven real UAV flights across four municipalities, with reference maps containing up to approximately 277,000 buildings.</p>
+      <div class="metric-grid">
+        <div class="metric"><strong>100%</strong><span>Recall@1 at ≈113 km²<br>7 of 7 flights</span></div>
+        <div class="metric"><strong>100%</strong><span>Recall@1 at ≈254 km²<br>7 of 7 flights</span></div>
+        <div class="metric"><strong>71.4%</strong><span>Recall@1 at ≈452 km²<br>5 of 7 flights</span></div>
+      </div>
+      <p class="evaluation-note">Recall@1 counts flights whose top-ranked position estimate is within 100 m of ground truth. The evaluated BRM and NetVLAD baselines achieve 0% Recall@1 at ≈254 km² and ≈452 km².</p>
+      <figure class="comparison-figure">
+        <div class="figure-panel"><a href="assets/localization-comparison.png" aria-label="View candidate comparison figure at full resolution"><img class="figure-image" src="assets/localization-comparison.webp" width="1600" height="1590" alt="Flight 7 candidate map over a six-kilometer search radius. Our top-ranked candidate coincides with ground truth. The shape-free ablation ranks it second; BRM and NetVLAD candidates are elsewhere." loading="lazy"></a></div>
+        <figcaption><strong>Disambiguating candidate locations.</strong> Flight 7, at a 6 km search radius (≈113 km²) covering 64,662 buildings. Numbers indicate each method’s top three candidates. Our method ranks the correct location first; removing building shape features lowers its rank.</figcaption>
+      </figure>
+      <figure>
+        <div class="figure-panel"><a href="assets/progressive-localization.png" aria-label="View progressive localization plot at full resolution"><img class="figure-image" src="assets/progressive-localization.webp" width="1782" height="585" alt="Log-scale plot of correct-candidate rank versus accumulated keyframes for seven flights at a six-kilometer search radius. Each flight eventually reaches stable rank one; stars mark the first stable rank-one point." loading="lazy"></a></div>
+        <figcaption><strong>Localization as observations accumulate.</strong> At a 6 km search radius, the correct region competes against 11,310 candidate bins. Each trace shows the best rank of the ground-truth bin and its eight neighbors; stars mark the first stable rank-one point. Missed or false building detections can temporarily alter the ranking.</figcaption>
+      </figure>
+    </section>
+
+    <section id="citation" class="section section-grid" aria-labelledby="citation-heading">
+      <div><div class="eyebrow">04 / Reference</div><h2 id="citation-heading">Cite this work.</h2><p class="citation-note">The arXiv identifier will be added when available.</p></div>
+      <div class="citation-box"><pre>@misc{terlizzi2026geometric,
+  title = {Large-Scale Geometric Map-Based Localization
+           of UAVs in GNSS-Denied Urban Environments},
+  author = {Terlizzi, III, Garth J. S. and Fathian, Kaveh},
+  year = {2026},
+  url = {https://ariarobotics.github.io/aerial_urban_localization/}
+}</pre></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner">
+    <div><p>© 2026 Garth Terlizzi and Kaveh Fathian. All rights reserved.</p><p>Developed in the ARIA Lab at Colorado School of Mines.</p></div>
+    <p><a href="LICENSE">License &amp; terms</a> · <a href="mailto:garth_terlizzi@mines.edu">Permission requests</a></p>
+  </div></footer>
+</body>
+</html>
