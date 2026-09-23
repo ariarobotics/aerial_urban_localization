@@ -6,6 +6,8 @@ ARIA Lab · Department of Computer Science · Colorado School of Mines
 
 [Project page](https://ariarobotics.github.io/aerial_urban_localization/) · [Research video](https://ariarobotics.github.io/aerial_urban_localization/#video)
 
+<img src="assets/opening.png" width="600" alt="UAV localization within a large-scale building footprint map, showing search radii of 6, 9, and 12 km and an inset of the local UAV map and flight trajectory.">
+
 ## Overview
 
 How can a UAV determine its position when GNSS is unavailable? This work localizes UAVs by matching buildings observed by a downward-facing camera to a reference building footprint map. It uses the spatial arrangement and shape of buildings to distinguish locations across metropolitan-scale search areas.
