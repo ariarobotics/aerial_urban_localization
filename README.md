@@ -4,7 +4,7 @@
 
 ARIA Lab · Department of Computer Science · Colorado School of Mines
 
-[Project page](https://ariarobotics.github.io/aerial_urban_localization/) · [Research video](https://ariarobotics.github.io/aerial_urban_localization/#video)
+[Paper (arXiv)](https://arxiv.org/abs/2609.28225) · [Project page](https://ariarobotics.github.io/aerial_urban_localization/) · [Research video](https://ariarobotics.github.io/aerial_urban_localization/#video)
 
 <img src="assets/opening.png" width="600" alt="UAV localization within a large-scale building footprint map, showing search radii of 6, 9, and 12 km and an inset of the local UAV map and flight trajectory.">
 
@@ -38,11 +38,13 @@ Recall@1 counts flights whose top-ranked position estimate is within **100 m of 
 
 This repository contains the project website, [research video](assets/iros_video_final_white_background.mp4), and figures illustrating the [pipeline](assets/pipeline.png) and [candidate comparison](assets/localization-comparison.png).
 
-The research implementation, evaluation datasets, and manuscript PDF are not included in this repository. The arXiv link is forthcoming.
+The research implementation, evaluation datasets, and manuscript PDF are not included in this repository. The [paper is available on arXiv](https://arxiv.org/abs/2609.28225).
+
+## Code access
+
+In light of ongoing global events and the potential for misuse of UAV technologies, we are not publicly releasing the research code. To request access, please [email the authors](mailto:garth_terlizzi@mines.edu) with your institutional or organizational affiliation and a brief description of your intended use. Requests will be considered on a case-by-case basis.
 
 ## Citation
-
-The following entry references the project page; the arXiv identifier will be added when available.
 
 ```bibtex
 @misc{terlizzi2026geometric,
@@ -50,7 +52,9 @@ The following entry references the project page; the arXiv identifier will be ad
            of UAVs in GNSS-Denied Urban Environments},
   author = {Terlizzi, III, Garth J. S. and Fathian, Kaveh},
   year = {2026},
-  url = {https://ariarobotics.github.io/aerial_urban_localization/}
+  eprint = {2609.28225},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2609.28225}
 }
 ```
 
